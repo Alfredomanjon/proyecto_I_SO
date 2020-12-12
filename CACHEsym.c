@@ -8,11 +8,12 @@
 
 typedef struct{
         short int ETQ;
-        short int Datos[8];
+        short int DATOS[8];
 } T_LINEA_CACHE;
 
 FILE *M;
 FILE *F;
+T_LINEA_CACHE cache[4];
 int tiempoglobal = 0;
 int numfallos = 0;
 char binSol[16] = "";
@@ -100,18 +101,99 @@ char* fromHexToBinary(char hexNumber[4]){
 	return binSol;
 }
 
+int* binaryToHexadecimal(char etiqueta[12]){
+    char *a = etiqueta;
+    int num = 0;
+    do {
+        int b = *a=='1'?1:0;
+        num = (num<<1)|b;
+        *a++;
+    } while (*a);
+    return num;
+}
+
 void splitAddress(char* addr){
 	char ETQ[13];
 	char LINEA[20];
 	char PALABRA[30];
+	char BLOQUE[15];
 	memmove(ETQ, binSol, 16-5);
  	memmove(LINEA, binSol+11, 2);
  	memmove(PALABRA, binSol+13, 3);
+ 	memmove(BLOQUE, binSol, 16-3);
  	printf("Etiqueta: |%s|\n", ETQ);
  	printf("Linea: |%s|\n", LINEA);
 	printf("Palabra: |%s|\n", PALABRA);
+	printf("Bloque: |%s|\n", BLOQUE);
+	int * hexETQ = binaryToHexadecimal(ETQ);
+	int * hexLIN = binaryToHexadecimal(LINEA);
+	int * hexPAL = binaryToHexadecimal(PALABRA);
+	int * hexBLOQ = binaryToHexadecimal(BLOQUE);
+	checkCache(hexETQ,hexLIN,hexPAL,hexBLOQ);
 }
 
+void checkCache(int ETQ,int LINEA,int PALABRA,int BLOQUE){
+	int status = 0;
+	int bloqNum = NULL;
+         bloqNum = BLOQUE;
+         bloqNum = bloqNum * 8;
+         int lineaNum = NULL;
+         lineaNum = LINEA;
+         if(cache[lineaNum].ETQ == ETQ){
+             status = 0;
+         }else{
+             status = 1;
+         }
+         if (status == 0) {
+             tiempoglobal++;
+             printf("T: %d ",tiempoglobal);
+             printf("Acierto de CACHE,");
+             printf(" ETQ %i",  ETQ);
+             printf(" Linea %02i",  LINEA);
+             printf(" Palabra %02i",  PALABRA);
+             printf(" Bloque %02i", BLOQUE);
+             printf("\n");
+             for (int j=0; j<4; j++) {
+                 printf("ETQ %d",cache[j].ETQ);
+                 printf(" DATOS: ");
+                 for (int i = 0; i<=7; i++) {
+                     printf("%x",cache[j].DATOS[i]);
+                     printf(" ");
+                 }
+                 printf("\n");
+             }
+             printf("\n");
+             sleep(2);
+         }else if(status == 1){
+             numfallos++;
+             tiempoglobal = tiempoglobal + 10;
+             printf("T: %d ",tiempoglobal);
+             printf(",Fallo de CACHE %d ",numfallos);
+             printf(", ETQ %i",  ETQ);
+             printf(" Linea %02i",  LINEA);
+             printf(" Palabra %02i",  PALABRA);
+             printf(" Bloque %02i", BLOQUE);
+             printf("\n");
+             printf("Cargando el bloque %02i", BLOQUE);
+             printf(" en la linea %i", LINEA);
+             cache[lineaNum].ETQ = ETQ;
+             for (int i = 0; i <= 7; i++) {
+                 cache[lineaNum].DATOS[i] = RAM[bloqNum + 7 - i];
+             }
+             printf("\n");
+             for (int j=0; j<4; j++) {
+                 printf("ETQ %d",cache[j].ETQ);
+                 printf(" DATOS: ");
+                 for (int i = 0; i<=7; i++) {
+                     printf("%x",cache[j].DATOS[i]);
+                     printf(" ");
+                 }
+                 printf("\n");
+             }
+             printf("\n");
+             sleep(2);
+         }
+}
 
 void readMemoryData(){
 
@@ -132,7 +214,7 @@ void readMemoryData(){
 
 int main(){
     	
-	T_LINEA_CACHE cache[4];
+
 	for(int i=0;i<4;i++)
 		cache[i].ETQ = 0xFF;
 	readRAM();
