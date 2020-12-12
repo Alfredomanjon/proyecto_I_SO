@@ -100,6 +100,18 @@ char* fromHexToBinary(char hexNumber[4]){
 	return binSol;
 }
 
+void splitAddress(char* addr){
+	char ETQ[13];
+	char LINEA[20];
+	char PALABRA[30];
+	memmove(ETQ, binSol, 16-5);
+ 	memmove(LINEA, binSol+11, 2);
+ 	memmove(PALABRA, binSol+13, 3);
+ 	printf("Etiqueta: |%s|\n", ETQ);
+ 	printf("Linea: |%s|\n", LINEA);
+	printf("Palabra: |%s|\n", PALABRA);
+}
+
 
 void readMemoryData(){
 
@@ -110,10 +122,13 @@ void readMemoryData(){
         }
     	while(fgets(elto, 12, F)!=NULL){
        	fromHexToBinary(elto);
+       	splitAddress(binSol);
     	}
 
      fclose(F);
 }
+
+
 
 int main(){
     	
