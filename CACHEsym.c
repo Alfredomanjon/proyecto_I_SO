@@ -16,9 +16,9 @@ FILE *F;
 T_LINEA_CACHE cache[4];
 int tiempoglobal = 0;
 int numfallos = 0;
+int numAccesos = 0;
 char binSol[16] = "";
 unsigned char RAM[1024];
-unsigned char memoryData[48] = { 0 };
 
 void readRAM(){
 
@@ -173,6 +173,7 @@ void checkCache(int ETQ,int LINEA,int PALABRA,int BLOQUE){
              printf("\n");
              sleep(2);
          }
+         numAccesos++;
 }
 
 void splitAddress(char* addr){
@@ -210,6 +211,14 @@ void readMemoryData(){
      fclose(F);
 }
 
+void showFinalStats(){
+	printf("---------------------------------------------\n");
+	printf("Número total de accesos: %d\n", numAccesos);
+	printf("Número de fallos totales: %d\n", numfallos);
+	printf("Tiempo total: %ds\n", tiempoglobal);
+	printf("Tiempo medio: %ds\n", tiempoglobal/numAccesos);
+}
+
 
 
 int main(){
@@ -219,6 +228,6 @@ int main(){
 		cache[i].ETQ = 0xFF;
 	readRAM();
 	readMemoryData();
-	
+	showFinalStats();
 	return 0;
 }
