@@ -101,7 +101,7 @@ char* fromHexToBinary(char hexNumber[4]){
 	return binSol;
 }
 
-int* binaryToHexadecimal(char etiqueta[12]){
+int binaryToHexadecimal(char etiqueta[12]){
     char *a = etiqueta;
     int num = 0;
     do {
@@ -112,32 +112,12 @@ int* binaryToHexadecimal(char etiqueta[12]){
     return num;
 }
 
-void splitAddress(char* addr){
-	char ETQ[13];
-	char LINEA[20];
-	char PALABRA[30];
-	char BLOQUE[15];
-	memmove(ETQ, binSol, 16-5);
- 	memmove(LINEA, binSol+11, 2);
- 	memmove(PALABRA, binSol+13, 3);
- 	memmove(BLOQUE, binSol, 16-3);
- 	printf("Etiqueta: |%s|\n", ETQ);
- 	printf("Linea: |%s|\n", LINEA);
-	printf("Palabra: |%s|\n", PALABRA);
-	printf("Bloque: |%s|\n", BLOQUE);
-	int * hexETQ = binaryToHexadecimal(ETQ);
-	int * hexLIN = binaryToHexadecimal(LINEA);
-	int * hexPAL = binaryToHexadecimal(PALABRA);
-	int * hexBLOQ = binaryToHexadecimal(BLOQUE);
-	checkCache(hexETQ,hexLIN,hexPAL,hexBLOQ);
-}
-
 void checkCache(int ETQ,int LINEA,int PALABRA,int BLOQUE){
 	int status = 0;
-	int bloqNum = NULL;
+	int bloqNum = 0;
          bloqNum = BLOQUE;
          bloqNum = bloqNum * 8;
-         int lineaNum = NULL;
+         int lineaNum = 0;
          lineaNum = LINEA;
          if(cache[lineaNum].ETQ == ETQ){
              status = 0;
@@ -193,6 +173,26 @@ void checkCache(int ETQ,int LINEA,int PALABRA,int BLOQUE){
              printf("\n");
              sleep(2);
          }
+}
+
+void splitAddress(char* addr){
+	char ETQ[13];
+	char LINEA[20];
+	char PALABRA[30];
+	char BLOQUE[15];
+	memmove(ETQ, binSol, 16-5);
+ 	memmove(LINEA, binSol+11, 2);
+ 	memmove(PALABRA, binSol+13, 3);
+ 	memmove(BLOQUE, binSol, 16-3);
+ 	printf("Etiqueta: |%s|\n", ETQ);
+ 	printf("Linea: |%s|\n", LINEA);
+	printf("Palabra: |%s|\n", PALABRA);
+	printf("Bloque: |%s|\n", BLOQUE);
+	int hexETQ = binaryToHexadecimal(ETQ);
+	int hexLIN = binaryToHexadecimal(LINEA);
+	int hexPAL = binaryToHexadecimal(PALABRA);
+	int hexBLOQ = binaryToHexadecimal(BLOQUE);
+	checkCache(hexETQ,hexLIN,hexPAL,hexBLOQ);
 }
 
 void readMemoryData(){
