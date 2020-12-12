@@ -29,18 +29,87 @@ void readRAM(){
     	
 }
 
+
+char* fromHexToBinary(char hexNumber[4]){
+	memset(binSol,0, 16 );
+	for(int i=0;i<4;i++){
+		switch(hexNumber[i])
+            {
+                case '0':
+                    strcat(binSol, "0000");
+                    break;
+                case '1':
+                    strcat(binSol, "0001");
+                    break;
+                case '2':
+                    strcat(binSol, "0010");
+                    break;
+                case '3':
+                    strcat(binSol, "0011");
+                    break;
+                case '4':
+                    strcat(binSol, "0100");
+                        break;
+                case '5':
+                    strcat(binSol, "0101");
+                    break;
+		case '6':
+                    strcat(binSol, "0110");
+                    break;
+                case '7':
+                    strcat(binSol, "0111");
+                    break;
+                case '8':
+                    strcat(binSol, "1000");
+                    break;
+		case '9':
+                    strcat(binSol, "1001");
+                    break;
+                case 'a':
+                case 'A':
+                    strcat(binSol, "1010");
+                    break;
+                case 'b':
+                case 'B':
+                    strcat(binSol, "1011");
+                    break;
+                case 'c':
+                case 'C':
+                    strcat(binSol, "1100");
+                    break;
+                case 'd':
+                case 'D':
+                    strcat(binSol, "1101");
+                    break;
+                case 'e':
+                case 'E':
+                    strcat(binSol, "1110");
+                    break;
+		case 'f':
+                case 'F':
+                    strcat(binSol, "1111");
+                    break;
+                default:
+                    printf("VA MAL");
+                    
+
+        }
+	
+	}
+	printf("Addr: %s\n", binSol);
+	return binSol;
+}
+
+
 void readMemoryData(){
 
-	int cont2=0;
-    	char letra2;
+    	unsigned char elto[12];
     	if ((F = fopen(ACCESOS,"rt")) == NULL){
         	puts("No es posible abrir el archivo.");
         	exit(1);
         }
-    	while((letra2 = fgetc(F))!= EOF ){
-       	memoryData[cont2]=letra2;
-      		//printf ("%c", letra2);
-       	cont2++;
+    	while(fgets(elto, 12, F)!=NULL){
+       	fromHexToBinary(elto);
     	}
 
      fclose(F);
