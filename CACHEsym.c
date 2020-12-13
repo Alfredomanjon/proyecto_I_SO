@@ -27,7 +27,6 @@ void readRAM(){
 		exit(1);
     	}
     	fread(RAM,sizeof(RAM),1,M);
-    	
 }
 
 
@@ -202,6 +201,20 @@ void showFinalStats(){
 	printf("Tiempo medio: %ds\n", tiempoglobal/numAccesos);
 }
 
+void showCacheContent(){
+	printf("Contenido de la cache:\n");
+	for(int i=0;i<4;i++){
+		printf("Contenido cache: ");
+		for(int j=0;j<8;j++){
+		int dir = cache[i].DATOS[j];
+		char dato = RAM[dir];
+			printf("%c ", dato);
+		}	
+		printf("\n");
+	}
+	
+}
+
 
 
 int main(){
@@ -212,5 +225,6 @@ int main(){
 	readRAM();
 	readMemoryData();
 	showFinalStats();
+	showCacheContent();
 	return 0;
 }
