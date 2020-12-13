@@ -172,10 +172,6 @@ void splitAddress(char* addr){
  	memmove(LINEA, binSol+11, 2);
  	memmove(PALABRA, binSol+13, 3);
  	memmove(BLOQUE, binSol, 16-3);
- 	printf("Etiqueta: |%s|\n", ETQ);
- 	printf("Linea: |%s|\n", LINEA);
-	printf("Palabra: |%s|\n", PALABRA);
-	printf("Bloque: |%s|\n", BLOQUE);
 	int hexAddr = binaryToHexadecimal(addr);
 	int hexETQ = binaryToHexadecimal(ETQ);
 	int hexLIN = binaryToHexadecimal(LINEA);
