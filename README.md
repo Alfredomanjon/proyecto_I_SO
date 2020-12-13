@@ -1,10 +1,13 @@
 # Proyecto I Sistemas Operativos
 
 ## Participantes
-    > Alfredo Manjón Canela
-    > Jorge Caro Poza
+
+- Alfredo Manjón Canela
+- Jorge Caro Poza
 
 ## Introducción
+
+Desarrollo realizado en la rama development.
 
 Este proyecto consiste en la elaboración de un simulador de memoria caché de un sistema ficticio de los años 70 llamado SUPERTRONIX.
 Este sistema tenía un bus de memoria de 10 bits y usaba memoria real, con una caché de 4 líneas con correspondencia directa y 8 bytes por línea.
@@ -20,15 +23,16 @@ typedef struct {
 >El campo etiqueta se inicializa a FF (hexadecimal) y a 0 todos los campos de datos de la caché.
 
 Una vez definido estos elementos, hay que leer los ficheros `RAM.bin` en una variable llamada `RAM`, que es un array de 1024 `unsigned char`. A continuación comienza la lectura del fichero de texto `accesos_memoria.txt` que contiene una lista de direcciones de memoria en hexadecimal, una por linea. 
-Se repetirá el siguiente protocolo:
 
-```mermaid
-graph TD
-A[CACHEsym] -- lee dirección de accesos_memoria.txt--> B[Dirección en binario]
-B -- Descomposición de dirección en etiqueta, linea y palabra--> C
-C[Comprobación de etiqueta] --Fallo--> D[-Incremento numfallos<br>-Incremento tiempo en 10<br>-Se copia el bloque desde el array RAM]
-C-- Acierto--> E[-Cada carácter se añade a la variable texto]
-```
+Se repetirá el siguiente protocolo:
+- CACHEsym lee una dirección del fichero accesos_memoria.txt.
+typedef struct {
+    short int ETQ;
+    short int Datos[8];
+} T_LINEA_CACHE;
+- Obtiene el número de línea y comprueba si la etiqueta de la dirección es igual a ETQ de la línea de la caché.
+- Si no es así, incrementa el valor de numfallos y escribe una línea con el texto “T: %d, Fallo de CACHE %d, ADDR %04X ETQ %X linea %02X palabra %02X bloque %02X”, siendo T el instante. Se incrementa en 10 el contador tiempoglobal. Se copia el bloque correspondiente desde el array RAM y se imprime un mensaje indicando que se está cargando el bloque X en la línea Y. Se actualizan tanto el campo ETQ como los 8 bytes de datos de la línea.
+- Por pantalla se escribe “T: %d, Acierto de CACHE, ADDR %04X ETQ %X linea %02X palabra %02X DATO %02X”. Cada carácter leído se añade a una variable llamada texto, que es un array de 100 caracteres como máximo (no hace falta usar memoria dinámica).
 
 El proceso vuelca el contenido de la caché por pantalla con el siguiente formato:
 ```
