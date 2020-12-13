@@ -202,6 +202,7 @@ void showFinalStats(){
 }
 
 void showCacheContent(){
+	printf("---------------------------------------------\n");
 	printf("Contenido de la cache:\n");
 	for(int i=0;i<4;i++){
 		printf("Contenido cache: ");
