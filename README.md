@@ -1,5 +1,9 @@
 # Proyecto I Sistemas Operativos
 
+## Participantes
+    > Alfredo Manjón Canela
+    > Jorge Caro Poza
+
 ## Introducción
 
 Este proyecto consiste en la elaboración de un simulador de memoria caché de un sistema ficticio de los años 70 llamado SUPERTRONIX.
