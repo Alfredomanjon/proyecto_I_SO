@@ -1,0 +1,85 @@
+T: 10, Fallo de CACHE 1, ADDR 02E4 ETQ 23 linea 00 palabra 04 bloque 92
+Cargando el bloque 92 en la linea 0
+ETQ 23 DATOS: 73 72 71 70 6f 6e 6d 6c 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+
+T: 20, Fallo de CACHE 2, ADDR 0200 ETQ 16 linea 00 palabra 00 bloque 64
+Cargando el bloque 64 en la linea 0
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+
+T: 30, Fallo de CACHE 3, ADDR 0208 ETQ 16 linea 01 palabra 00 bloque 65
+Cargando el bloque 65 en la linea 1
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 16 DATOS: 63 62 61 79 78 77 76 75 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+
+T: 40, Fallo de CACHE 4, ADDR 0109 ETQ 8 linea 01 palabra 01 bloque 33
+Cargando el bloque 33 en la linea 1
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 8 DATOS: 76 75 74 73 72 71 70 6f 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+
+T: 41, Acierto de CACHE, ADDR 010A ETQ 8 linea 01 palabra 02 DATO 111 
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 8 DATOS: 76 75 74 73 72 71 70 6f 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+
+T: 51, Fallo de CACHE 5, ADDR 020B ETQ 16 linea 01 palabra 03 bloque 65
+Cargando el bloque 65 en la linea 1
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 16 DATOS: 63 62 61 79 78 77 76 75 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+
+T: 52, Acierto de CACHE, ADDR 0209 ETQ 16 linea 01 palabra 01 DATO 117 
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 16 DATOS: 63 62 61 79 78 77 76 75 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+
+T: 62, Fallo de CACHE 6, ADDR 001C ETQ 0 linea 03 palabra 04 bloque 03
+Cargando el bloque 03 en la linea 3
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 16 DATOS: 63 62 61 79 78 77 76 75 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 0 DATOS: 67 66 65 64 63 62 61 79 
+
+T: 63, Acierto de CACHE, ADDR 001D ETQ 0 linea 03 palabra 05 DATO 121 
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 16 DATOS: 63 62 61 79 78 77 76 75 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 0 DATOS: 67 66 65 64 63 62 61 79 
+
+T: 73, Fallo de CACHE 7, ADDR 030B ETQ 24 linea 01 palabra 03 bloque 97
+Cargando el bloque 97 en la linea 1
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 24 DATOS: 69 68 67 66 65 64 63 62 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 0 DATOS: 67 66 65 64 63 62 61 79 
+
+T: 74, Acierto de CACHE, ADDR 030F ETQ 24 linea 01 palabra 07 DATO 98 
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 24 DATOS: 69 68 67 66 65 64 63 62 
+ETQ 255 DATOS: 0 0 0 0 0 0 0 0 
+ETQ 0 DATOS: 67 66 65 64 63 62 61 79 
+
+T: 84, Fallo de CACHE 8, ADDR 0010 ETQ 0 linea 02 palabra 00 bloque 02
+Cargando el bloque 02 en la linea 2
+ETQ 16 DATOS: 74 73 72 71 70 6f 6e 6d 
+ETQ 24 DATOS: 69 68 67 66 65 64 63 62 
+ETQ 0 DATOS: 78 77 76 75 74 73 72 71 
+ETQ 0 DATOS: 67 66 65 64 63 62 61 79 
+
+---------------------------------------------
+Número total de accesos: 12
+Número de fallos totales: 8
+Tiempo total: 84s
+Tiempo medio: 7s
