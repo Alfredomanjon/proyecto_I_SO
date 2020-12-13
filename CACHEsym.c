@@ -97,7 +97,6 @@ char* fromHexToBinary(char hexNumber[4]){
         }
 	
 	}
-	printf("Addr: %s\n", binSol);
 	return binSol;
 }
 
@@ -126,7 +125,7 @@ void checkCache(int ADDR, int ETQ,int LINEA,int PALABRA,int BLOQUE){
          }
          if (status == 0) {
              tiempoglobal++;
-             printf("T: %d, Acierto de CACHE, ADDR %04X ETQ %i linea %02i palabra %02i bloque %02i\n",tiempoglobal, ADDR, ETQ, LINEA, PALABRA, BLOQUE);
+             printf("T: %d, Acierto de CACHE, ADDR %04X ETQ %i linea %02i palabra %02i DATO %02i \n",tiempoglobal, ADDR, ETQ, LINEA, PALABRA, RAM[bloqNum]);
              for (int j=0; j<4; j++) {
                  printf("ETQ %d",cache[j].ETQ);
                  printf(" DATOS: ");
