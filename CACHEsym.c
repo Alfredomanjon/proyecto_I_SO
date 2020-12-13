@@ -112,7 +112,7 @@ int binaryToHexadecimal(char etiqueta[12]){
     return num;
 }
 
-void checkCache(int ETQ,int LINEA,int PALABRA,int BLOQUE){
+void checkCache(int ADDR, int ETQ,int LINEA,int PALABRA,int BLOQUE){
 	int status = 0;
 	int bloqNum = 0;
          bloqNum = BLOQUE;
@@ -126,13 +126,7 @@ void checkCache(int ETQ,int LINEA,int PALABRA,int BLOQUE){
          }
          if (status == 0) {
              tiempoglobal++;
-             printf("T: %d ",tiempoglobal);
-             printf("Acierto de CACHE,");
-             printf(" ETQ %i",  ETQ);
-             printf(" Linea %02i",  LINEA);
-             printf(" Palabra %02i",  PALABRA);
-             printf(" Bloque %02i", BLOQUE);
-             printf("\n");
+             printf("T: %d, Acierto de CACHE, ADDR %04X ETQ %i linea %02i palabra %02i bloque %02i\n",tiempoglobal, ADDR, ETQ, LINEA, PALABRA, BLOQUE);
              for (int j=0; j<4; j++) {
                  printf("ETQ %d",cache[j].ETQ);
                  printf(" DATOS: ");
@@ -147,15 +141,8 @@ void checkCache(int ETQ,int LINEA,int PALABRA,int BLOQUE){
          }else if(status == 1){
              numfallos++;
              tiempoglobal = tiempoglobal + 10;
-             printf("T: %d ",tiempoglobal);
-             printf(",Fallo de CACHE %d ",numfallos);
-             printf(", ETQ %i",  ETQ);
-             printf(" Linea %02i",  LINEA);
-             printf(" Palabra %02i",  PALABRA);
-             printf(" Bloque %02i", BLOQUE);
-             printf("\n");
-             printf("Cargando el bloque %02i", BLOQUE);
-             printf(" en la linea %i", LINEA);
+             printf("T: %d, Fallo de CACHE %d, ADDR %04X ETQ %i linea %02i palabra %02i bloque %02i\n", tiempoglobal, numfallos, ADDR, ETQ, LINEA, PALABRA, BLOQUE);
+             printf("Cargando el bloque %02i en la linea %i", BLOQUE, LINEA);
              cache[lineaNum].ETQ = ETQ;
              for (int i = 0; i <= 7; i++) {
                  cache[lineaNum].DATOS[i] = RAM[bloqNum + 7 - i];
@@ -189,11 +176,12 @@ void splitAddress(char* addr){
  	printf("Linea: |%s|\n", LINEA);
 	printf("Palabra: |%s|\n", PALABRA);
 	printf("Bloque: |%s|\n", BLOQUE);
+	int hexAddr = binaryToHexadecimal(addr);
 	int hexETQ = binaryToHexadecimal(ETQ);
 	int hexLIN = binaryToHexadecimal(LINEA);
 	int hexPAL = binaryToHexadecimal(PALABRA);
 	int hexBLOQ = binaryToHexadecimal(BLOQUE);
-	checkCache(hexETQ,hexLIN,hexPAL,hexBLOQ);
+	checkCache(hexAddr, hexETQ, hexLIN, hexPAL, hexBLOQ);
 }
 
 void readMemoryData(){
